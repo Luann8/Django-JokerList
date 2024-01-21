@@ -1,4 +1,4 @@
-# Djang Joker List
+# Joker List in Django
 
 A simple list for joker, web application written in Python
 
