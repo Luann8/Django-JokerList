@@ -1,9 +1,9 @@
-# DjangoToDo
-A simple ToDo list web application written in Python for Django Training (BVCOE, New Delhi) 2015 conducted by Yask Srivastava
+# Djang Joker List
+
+A simple list for joker, web application written in Python
 
 ### Instructions to run the app
 
-1. `git clone <repo link> `
-2. `python manage.py makemigrations && python manage.py migrate`
-3. `python manage.py runserver`
+1. `python manage.py migrate`
+2. `python manage.py runserver`
 
