@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list Joker</title>
+    <style>
+        body {
+            background-image: url("https://wallpapercave.com/wp/wp4895529.png");
+            color: #17b832;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            background-color: #2ECC71;
+            color: #ffffff;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Tell us a Joke</h1>
+
+<form action="/" method="post">
+    {% csrf_token %}
+    <label for="task">Task:</label>
+    <input id="task" name="task" type="text" required>
+    <input type="hidden" name="action" value="add">
+    <button type="submit">Add Task</button>
+</form>
+
+<h2>My Jokes</h2>
+<ul>
+    {% for joke in jokes %}
+        <li>
+            {{ joke.text }}
+            <form action="/" method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="task_id" value="{{ joke.id }}">
+                <input type="hidden" name="action" value="delete">
+                <button type="submit" style="color: red;">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
