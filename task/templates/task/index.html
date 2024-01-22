@@ -6,7 +6,7 @@
     <title>list Joker</title>
     <style>
         body {
-            background-image: url("https://wallpapercave.com/wp/wp4895529.png");
+            background-color: #ffffff;
             color: #ffffff;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -24,7 +24,7 @@
         }
 
         button {
-            background-color: #2ECC71;
+            background-color: #21ba1b;
             color: #ffffff;
             padding: 10px;
             margin-top: 10px;
@@ -40,6 +40,8 @@
 <body>
 
 <h1>Tell us a Joke</h1>
+
+<h2> ( joker / category / order  ) <h2>
 
 <form action="/" method="post">
     {% csrf_token %}
@@ -63,6 +65,26 @@
         </li>
     {% endfor %}
 </ul>
+<button id="saveToFile">Save Jokes to Text File</button>
 
+<script>
+    document.getElementById('saveToFile').addEventListener('click', function() {
+        saveToTxt();
+    });
+
+    function saveToTxt() {
+        var jokesText = '{% for joke in jokes %}{{ joke.text }}\n{% endfor %}';
+        var blob = new Blob([jokesText], { type: 'text/plain' });
+        var link = document.createElement('a');
+
+        link.href = URL.createObjectURL(blob);
+        link.download = 'jokes.txt';
+
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+    }
+</script>
 </body>
 </html>
